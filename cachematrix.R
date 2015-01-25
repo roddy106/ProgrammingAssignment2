@@ -1,5 +1,5 @@
 ## Title: Cachematrix
-## Version: v5
+## Version: v8
 ## Objective: To provide a fast matrix inverse function using caching
 ## Date started: 25 Jan 2015
 
