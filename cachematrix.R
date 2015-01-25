@@ -54,8 +54,7 @@ makeCacheMatrix <- function(x = matrix()) {
         
     m <- NULL
     
-    ## We are going to call this function to set the input matrix
-    ## 
+    ## The 'set' method sets the input matrix
     set <- function(y){
         x <<- y
     
@@ -65,7 +64,7 @@ makeCacheMatrix <- function(x = matrix()) {
         m <<- NULL
     }
     
-    ## So the 'get' method simply returns to us the input matrix
+    ## The 'get' method simply returns to us the input matrix
     get <- function() x
     
     ## The 'setinverse' method is called to set the inverse matrix
