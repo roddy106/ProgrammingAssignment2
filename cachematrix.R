@@ -1,7 +1,41 @@
 ## Title: Cachematrix
+## Version: v5
 ## Objective: To provide a fast matrix inverse function using caching
-## Date started: 23 Jan 2015
+## Date started: 25 Jan 2015
+
 ## Author: Randeep Grewal
+
+## Useage:
+## (1) First run makeCacheMatrix to initialise the methods:
+##          matrix.methods <- makeCacheMatrix(NULL)
+##      Note that we can initialise the function with NULL
+##      See https://class.coursera.org/rprog-010/forum/thread?thread_id=1096
+##      For more discussion re using the NULL 
+##      Very similar to my writeup of the mean function
+##  (2) Set the matrix with:
+##          matrix.methods$set(matrix(1:4,2,2))
+##  (3) Test that we have loaded the matrix with:
+##          matrix.methods$get()
+##  (4) Get the inverse by:
+##          cacheSolve(matrix.methods)
+##      First time this function is run it will compute the inverse and cache it
+##      Second and subsequent times it will retrieve from cache
+
+## Comment:
+## There is some discussion in the Coursera forums on whether one needs to check
+## if the matrix has changed when cacheSolve is called ie between setting it
+## and seeking the inverse
+## ie
+##      test_matrix <- matrix(1:4,2,2)
+##      matrix.methods$set(test_matrix)
+##      NOW change test_matrix to something completely different
+##
+## I do not think this is necessary as matrix should only be changed by 
+## the makeCacheMatrix$set method - ie this is the only way the underlying
+## matrix should be changed
+## Changing test_matrix does not mean that the matrix you have stored is changed
+## That matrix should only ever be changed by the set method - that is the point
+## of the exercise!
 
 ## Description: makeCacheMatrix
 ## The role of this function is to create a special matrix object that
@@ -17,7 +51,7 @@ makeCacheMatrix <- function(x = matrix()) {
     
 ## m is variable in the environment of the makeCacheMatrix which will eventually
 ## contain the inverse matrix but we need to initialise it to NULL
-    
+        
     m <- NULL
     
     ## We are going to call this function to set the input matrix
@@ -64,7 +98,7 @@ cacheSolve <- function(x, ...) {
     m <- x$getinverse()
     
     ## however we need to check if it actually contains any values
-    if(!is.null(m)){
+        if(!is.null(m)){
         
         ## if it does then we say that we are returnign the cached matrix
         message("Getting cached matrix")
